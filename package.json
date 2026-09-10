@@ -35,5 +35,13 @@
   },
   "devDependencies": {
     "typescript": "5.9.3"
+  },
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "protocol": [
+        "dist/protocol.d.ts"
+      ]
+    }
   }
 }
