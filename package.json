@@ -1,0 +1,47 @@
+{
+  "name": "@lo/miniapp-sdk",
+  "version": "0.1.0",
+  "description": "Typed browser SDK for LO Mini Apps, with Telegram host compatibility",
+  "type": "module",
+  "license": "UNLICENSED",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "dist-cjs",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist-cjs/index.js",
+      "default": "./dist/index.js"
+    },
+    "./protocol": {
+      "types": "./dist/protocol.d.ts",
+      "import": "./dist/protocol.js",
+      "require": "./dist-cjs/protocol.js",
+      "default": "./dist/protocol.js"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepare": "npm run build",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "check": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "protocol": [
+        "dist/protocol.d.ts"
+      ]
+    }
+  }
+}
