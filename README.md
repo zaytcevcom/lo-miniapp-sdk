@@ -90,3 +90,15 @@ SDK package version, wire protocol version and Telegram compatibility version ar
 separate. Additive methods require contract tests and host support; unsupported
 methods must not be advertised. Current SDK is 0.1.0 and subject to review before
 its first public release.
+
+### Bot message permission
+
+`requestWriteAccess(host, { signal?, timeoutMs? })` requests native confirmation
+and resolves to `true` only when the host confirms access. A user cancellation
+resolves to `false`; unsupported hosts, aborts and timeouts reject with
+`MiniAppError`. The default timeout is 60 seconds. Check
+`supports(host, "requestWriteAccess")` before offering the action.
+
+Installing or opening a Mini App does not grant this permission. The LO host
+binds requests to the launch bot, stores consent on the server and lets users
+revoke it through the Mini App menu. Apps without a bot cannot receive messages.

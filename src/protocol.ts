@@ -2,6 +2,7 @@
 export const MiniAppOutgoingEvent = {
   /** The app finished loading and is ready to be shown. */
   Ready: "web_app_ready",
+  RequestWriteAccess: "web_app_request_write_access",
   /** Expand the app to full height. */
   Expand: "web_app_expand",
   RequestFullscreen: "web_app_request_fullscreen",
@@ -67,6 +68,7 @@ export const MiniAppIncomingEvent = {
   SafeAreaChanged: "safe_area_changed",
   ContentSafeAreaChanged: "content_safe_area_changed",
   PopupClosed: "popup_closed",
+  WriteAccessRequested: "write_access_requested",
   VisibilityChanged: "visibility_changed",
   FullscreenChanged: "fullscreen_changed",
   FullscreenFailed: "fullscreen_failed",
@@ -178,6 +180,7 @@ export const MiniAppLimits = Object.freeze({
 export const LO_SDK_PROTOCOL_VERSION = 1 as const;
 /** Advertise only features implemented by the native host, never SDK method presence. */
 export const LO_HOST_CAPABILITIES = [
+  "requestWriteAccess",
   "ready",
   "expand",
   "backButton",

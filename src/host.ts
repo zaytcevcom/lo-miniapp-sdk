@@ -79,6 +79,7 @@ export function supports(host: Host | null, capability: Capability): boolean {
   if (host.provider === "lo")
     return host.sdk.capabilities?.includes(capability) === true;
   const versions: Record<Capability, string> = {
+    requestWriteAccess: "6.9",
     ready: "6.0",
     expand: "6.0",
     backButton: "6.1",
