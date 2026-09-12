@@ -1,6 +1,6 @@
 {
   "name": "@lo/miniapp-sdk",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Typed browser SDK for LO Mini Apps, with Telegram host compatibility",
   "type": "module",
   "license": "UNLICENSED",

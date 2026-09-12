@@ -2,6 +2,7 @@
 export const MiniAppOutgoingEvent = {
   /** The app finished loading and is ready to be shown. */
   Ready: "web_app_ready",
+  HideKeyboard: "web_app_hide_keyboard",
   RequestWriteAccess: "web_app_request_write_access",
   /** Expand the app to full height. */
   Expand: "web_app_expand",
@@ -182,6 +183,7 @@ export const LO_SDK_PROTOCOL_VERSION = 1 as const;
 export const LO_HOST_CAPABILITIES = [
   "requestWriteAccess",
   "ready",
+  "hideKeyboard",
   "expand",
   "backButton",
   "mainButton",

@@ -23,6 +23,7 @@ export interface HostSDK {
   safeAreaInset?: { top: number; bottom: number };
   contentSafeAreaInset?: { top: number; bottom: number };
   ready?(): void;
+  hideKeyboard?(): void;
   setHeaderColor?(color: string): void;
   setBackgroundColor?(color: string): void;
   setBottomBarColor?(color: string): void;
