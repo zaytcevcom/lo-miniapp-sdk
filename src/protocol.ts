@@ -4,6 +4,8 @@ export const MiniAppOutgoingEvent = {
   Ready: "web_app_ready",
   InvokeCustomMethod: "web_app_invoke_custom_method",
   HideKeyboard: "web_app_hide_keyboard",
+  OpenScanQrPopup: "web_app_open_scan_qr_popup",
+  CloseScanQrPopup: "web_app_close_scan_qr_popup",
   RequestWriteAccess: "web_app_request_write_access",
   /** Expand the app to full height. */
   Expand: "web_app_expand",
@@ -62,6 +64,8 @@ export type MiniAppOutgoingEventName =
 /** Events the client sends to the Mini App. */
 export const MiniAppIncomingEvent = {
   CustomMethodInvoked: "custom_method_invoked",
+  QrTextReceived: "qr_text_received",
+  ScanQrPopupClosed: "scan_qr_popup_closed",
   MainButtonPressed: "main_button_pressed",
   SecondaryButtonPressed: "secondary_button_pressed",
   BackButtonPressed: "back_button_pressed",
@@ -186,6 +190,7 @@ export const LO_HOST_CAPABILITIES = [
   "requestWriteAccess",
   "ready",
   "hideKeyboard",
+  "qrScanner",
   "cloudStorage",
   "expand",
   "backButton",
@@ -210,3 +215,7 @@ export type CloudStorageRequest =
   | { req_id: string; method: "getStorageValues" | "deleteStorageValues"; params: { keys: string[] } }
   | { req_id: string; method: "getStorageKeys"; params: Record<string, never> };
 export type CloudStorageResult = { req_id: string; result?: boolean | string[] | Record<string, string>; error?: string };
+
+/** Native validates the optional, trimmed prompt to at most 64 UTF-16 units. */
+export type ScanQrPopupPayload = { text?: string };
+export type QrTextReceivedPayload = { data: string };
