@@ -65,6 +65,7 @@ test("native controls use explicit LO capabilities and Telegram version gates", 
     ["secondaryButton", "7.9", "7.10"],
     ["bottomBarColor", "7.9", "7.10"],
     ["hideKeyboard", "9.0", "9.1"],
+    ["qrScanner", "6.3", "6.4"],
   ]) {
     assert.equal(supports({ provider: "lo", sdk: { initData: "x", capabilities: [] } }, capability), false);
     assert.equal(supports(host, capability), true);

@@ -41,7 +41,7 @@ npm ci
 npm test
 npm pack
 # In a consuming app:
-npm install ./vendor/lo-miniapp-sdk-0.3.0.tgz
+npm install ./vendor/lo-miniapp-sdk-0.6.0.tgz
 ```
 
 Before general third-party distribution, the owner must choose public repository
@@ -88,7 +88,7 @@ payments and app API clients stay in those repositories.
 
 SDK package version, wire protocol version and Telegram compatibility version are
 separate. Additive methods require contract tests and host support; unsupported
-methods must not be advertised. Current SDK is 0.3.0 and subject to review before
+methods must not be advertised. Current SDK is 0.6.0 and subject to review before
 its first public release.
 
 ### Bot message permission
@@ -139,3 +139,15 @@ Each operation accepts an optional AbortSignal and positive timeoutMs (30 second
 by default). Cancellation stops waiting for the result; it does not undo a write
 already accepted by the host. Direct `host.sdk.CloudStorage` retains Telegram's
 six chainable callback methods. LO host support and server rollout ship separately.
+
+### QR scanner
+
+`supports(host, "qrScanner")` checks explicit LO support or Telegram 6.4+.
+`host.sdk.showScanQrPopup({ text? }, callback?)` opens a continuous native scanner;
+return `true` from the callback or call `closeScanQrPopup()` to close it. The
+optional prompt is limited to 64 UTF-16 units after trimming. Native hosts emit
+`qr_text_received` for scans and `scan_qr_popup_closed` for user dismissal or
+permission failure, but not for a programmatic close. Telegram exposes the
+public `scanQrPopupClosed` event from 7.7. These additive types do not enable a
+scanner on an older LO binary; native implementation and permission handling
+must be distributed separately before advertising the capability.

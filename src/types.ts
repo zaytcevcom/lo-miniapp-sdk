@@ -34,6 +34,9 @@ export interface HostSDK {
   contentSafeAreaInset?: { top: number; bottom: number };
   ready?(): void;
   hideKeyboard?(): void;
+  /** Return true from the callback to close the continuous scanner. */
+  showScanQrPopup?(params: { text?: string }, callback?: (text: string) => boolean | void): void;
+  closeScanQrPopup?(): void;
   setHeaderColor?(color: string): void;
   setBackgroundColor?(color: string): void;
   setBottomBarColor?(color: string): void;
