@@ -59,6 +59,18 @@ test("version comparison is numeric and conservative", () => {
   );
   assert.equal(nativeVersion(host, "6.0"), false);
 });
+test("native controls use explicit LO capabilities and Telegram version gates", () => {
+  for (const [capability, before, since] of [
+    ["settingsButton", "6.9", "7.0"],
+    ["secondaryButton", "7.9", "7.10"],
+    ["bottomBarColor", "7.9", "7.10"],
+  ]) {
+    assert.equal(supports({ provider: "lo", sdk: { initData: "x", capabilities: [] } }, capability), false);
+    assert.equal(supports(host, capability), true);
+    assert.equal(supports({ provider: "telegram", sdk: { initData: "x", version: before } }, capability), false);
+    assert.equal(supports({ provider: "telegram", sdk: { initData: "x", version: since } }, capability), true);
+  }
+});
 test("subscriptions have idempotent cleanup", () => {
   const calls = [];
   const callback = () => {};
