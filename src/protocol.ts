@@ -2,6 +2,7 @@
 export const MiniAppOutgoingEvent = {
   /** The app finished loading and is ready to be shown. */
   Ready: "web_app_ready",
+  InvokeCustomMethod: "web_app_invoke_custom_method",
   HideKeyboard: "web_app_hide_keyboard",
   RequestWriteAccess: "web_app_request_write_access",
   /** Expand the app to full height. */
@@ -60,6 +61,7 @@ export type MiniAppOutgoingEventName =
 
 /** Events the client sends to the Mini App. */
 export const MiniAppIncomingEvent = {
+  CustomMethodInvoked: "custom_method_invoked",
   MainButtonPressed: "main_button_pressed",
   SecondaryButtonPressed: "secondary_button_pressed",
   BackButtonPressed: "back_button_pressed",
@@ -184,6 +186,7 @@ export const LO_HOST_CAPABILITIES = [
   "requestWriteAccess",
   "ready",
   "hideKeyboard",
+  "cloudStorage",
   "expand",
   "backButton",
   "mainButton",
@@ -200,3 +203,10 @@ export const LO_HOST_CAPABILITIES = [
   "sendData",
 ] as const;
 export type Capability = (typeof LO_HOST_CAPABILITIES)[number];
+
+/** Only these custom methods can reach LO storage; arbitrary backend invocation is forbidden. */
+export type CloudStorageRequest =
+  | { req_id: string; method: "saveStorageValue"; params: { key: string; value: string } }
+  | { req_id: string; method: "getStorageValues" | "deleteStorageValues"; params: { keys: string[] } }
+  | { req_id: string; method: "getStorageKeys"; params: Record<string, never> };
+export type CloudStorageResult = { req_id: string; result?: boolean | string[] | Record<string, string>; error?: string };
