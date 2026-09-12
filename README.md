@@ -115,3 +115,27 @@ the main button. Subscribe to each button's click event and clean up on teardown
 `supports(host, "hideKeyboard")` detects native keyboard dismissal (Telegram
 9.1+ or an explicit LO host capability). Call `host.sdk.hideKeyboard?.()` to
 dismiss the current on-screen keyboard; it is harmless when no keyboard is open.
+
+### Persistent CloudStorage
+
+`cloudStorage(host)` provides promise-based `setItem`, `getItem`, `getItems`,
+`removeItem`, `removeItems`, and `getKeys`. Calls require Telegram 6.9+ or an
+explicit LO `cloudStorage` capability. An unsupported host rejects the promise;
+an outage never becomes an empty value. The native host owns authentication,
+user/application isolation and persistent storage. This package cannot enable
+storage on an older client.
+
+```ts
+import { cloudStorage, supports } from '@lo/miniapp-sdk';
+
+if (supports(host, 'cloudStorage')) {
+  const storage = cloudStorage(host);
+  await storage.setItem('draft', 'Hello');
+  const draft = await storage.getItem('draft', { signal });
+}
+```
+
+Each operation accepts an optional AbortSignal and positive timeoutMs (30 seconds
+by default). Cancellation stops waiting for the result; it does not undo a write
+already accepted by the host. Direct `host.sdk.CloudStorage` retains Telegram's
+six chainable callback methods. LO host support and server rollout ship separately.

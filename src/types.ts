@@ -10,7 +10,17 @@ export type HostButton = {
     is_visible: boolean;
   }): void;
 };
+export type StorageCallback<T> = (error: unknown, value?: T) => void;
+export interface HostCloudStorage {
+  setItem(key: string, value: string, callback?: StorageCallback<boolean>): HostCloudStorage;
+  getItem(key: string, callback?: StorageCallback<string>): HostCloudStorage;
+  getItems(keys: string[], callback?: StorageCallback<Record<string, string>>): HostCloudStorage;
+  removeItem(key: string, callback?: StorageCallback<boolean>): HostCloudStorage;
+  removeItems(keys: string[], callback?: StorageCallback<boolean>): HostCloudStorage;
+  getKeys(callback?: StorageCallback<string[]>): HostCloudStorage;
+}
 export interface HostSDK {
+  CloudStorage?: HostCloudStorage;
   initData: string;
   capabilities?: readonly string[];
   isFullscreen?: boolean;
