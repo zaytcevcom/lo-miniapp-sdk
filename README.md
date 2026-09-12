@@ -111,3 +111,7 @@ advertise each capability explicitly; the package version does not enable it on
 older clients. Telegram hosts require versions 7.10, 7.0 and 7.10 respectively.
 The secondary button supports left, right, top and bottom placement relative to
 the main button. Subscribe to each button's click event and clean up on teardown.
+
+`supports(host, "hideKeyboard")` detects native keyboard dismissal (Telegram
+9.1+ or an explicit LO host capability). Call `host.sdk.hideKeyboard?.()` to
+dismiss the current on-screen keyboard; it is harmless when no keyboard is open.

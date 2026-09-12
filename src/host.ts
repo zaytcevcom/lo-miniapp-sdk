@@ -81,6 +81,7 @@ export function supports(host: Host | null, capability: Capability): boolean {
   const versions: Record<Capability, string> = {
     requestWriteAccess: "6.9",
     ready: "6.0",
+    hideKeyboard: "9.1",
     expand: "6.0",
     backButton: "6.1",
     mainButton: "6.0",
