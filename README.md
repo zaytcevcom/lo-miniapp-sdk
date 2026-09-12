@@ -41,7 +41,7 @@ npm ci
 npm test
 npm pack
 # In a consuming app:
-npm install ./vendor/lo-miniapp-sdk-0.1.0.tgz
+npm install ./vendor/lo-miniapp-sdk-0.3.0.tgz
 ```
 
 Before general third-party distribution, the owner must choose public repository
@@ -88,7 +88,7 @@ payments and app API clients stay in those repositories.
 
 SDK package version, wire protocol version and Telegram compatibility version are
 separate. Additive methods require contract tests and host support; unsupported
-methods must not be advertised. Current SDK is 0.1.0 and subject to review before
+methods must not be advertised. Current SDK is 0.3.0 and subject to review before
 its first public release.
 
 ### Bot message permission
@@ -102,3 +102,12 @@ resolves to `false`; unsupported hosts, aborts and timeouts reject with
 Installing or opening a Mini App does not grant this permission. The LO host
 binds requests to the launch bot, stores consent on the server and lets users
 revoke it through the Mini App menu. Apps without a bot cannot receive messages.
+
+### Native controls
+
+Use `supports(host, "secondaryButton")`, `supports(host, "settingsButton")` and
+`supports(host, "bottomBarColor")` before offering these features. LO hosts
+advertise each capability explicitly; the package version does not enable it on
+older clients. Telegram hosts require versions 7.10, 7.0 and 7.10 respectively.
+The secondary button supports left, right, top and bottom placement relative to
+the main button. Subscribe to each button's click event and clean up on teardown.

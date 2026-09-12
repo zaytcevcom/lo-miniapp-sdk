@@ -25,6 +25,7 @@ export interface HostSDK {
   ready?(): void;
   setHeaderColor?(color: string): void;
   setBackgroundColor?(color: string): void;
+  setBottomBarColor?(color: string): void;
   expand?(): void;
   requestFullscreen?(): void;
   onEvent?(name: string, fn: () => void): void;
