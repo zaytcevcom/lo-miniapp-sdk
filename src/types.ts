@@ -49,6 +49,8 @@ export interface HostSDK {
   contentSafeAreaInset?: { top: number; bottom: number };
   ready?(): void;
   hideKeyboard?(): void;
+  /** Empty chat types return to the chat from which the Mini App was opened. */
+  switchInlineQuery?(query: string, chooseChatTypes?: readonly ("users" | "bots" | "groups" | "channels")[]): void;
   /** Return true from the callback to close the continuous scanner. */
   showScanQrPopup?(params: { text?: string }, callback?: (text: string) => boolean | void): void;
   closeScanQrPopup?(): void;

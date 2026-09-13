@@ -82,6 +82,7 @@ export function supports(host: Host | null, capability: Capability): boolean {
     requestWriteAccess: "6.9",
     ready: "6.0",
     hideKeyboard: "9.1",
+    switchInlineQuery: "6.7",
     qrScanner: "6.4",
     cloudStorage: "6.9",
     deviceStorage: "9.0",
