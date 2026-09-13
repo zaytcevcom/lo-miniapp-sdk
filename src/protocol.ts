@@ -1,5 +1,6 @@
 /** Events the Mini App sends to the client. */
 export const MiniAppOutgoingEvent = {
+  RequestFileDownload: "web_app_request_file_download",
   StartAccelerometer: "web_app_start_accelerometer",
   StopAccelerometer: "web_app_stop_accelerometer",
   StartDeviceOrientation: "web_app_start_device_orientation",
@@ -80,6 +81,7 @@ export type MiniAppOutgoingEventName =
 
 /** Events the client sends to the Mini App. */
 export const MiniAppIncomingEvent = {
+  FileDownloadRequested: "file_download_requested",
   AccelerometerStarted: "accelerometer_started",
   AccelerometerStopped: "accelerometer_stopped",
   AccelerometerChanged: "accelerometer_changed",
@@ -231,6 +233,7 @@ export const LO_HOST_CAPABILITIES = [
   "location",
   "biometry",
   "sensors",
+  "downloadFile",
   "qrScanner",
   "cloudStorage",
   "deviceStorage",
@@ -269,3 +272,7 @@ export type SensorStartPayload = { refresh_rate?: number };
 export type DeviceOrientationStartPayload = SensorStartPayload & { need_absolute?: boolean };
 export type SensorChangedPayload = { x: number; y: number; z: number };
 export type DeviceOrientationChangedPayload = { absolute: boolean; alpha: number; beta: number; gamma: number };
+
+/** Acceptance starts a host-owned download; it does not mean the file was saved. */
+export type DownloadFileParams = { url: string; file_name: string };
+export type FileDownloadRequestedPayload = { status: "downloading" | "cancelled" };
