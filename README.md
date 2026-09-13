@@ -184,3 +184,15 @@ The host resolves the launch bot identity, refreshes destination permissions
 and remote draft, and preserves occupied drafts and recordings. Selection
 only prepares text; the user still chooses an inline result and sends it.
 Cancellation keeps the Mini App open.
+
+### Read clipboard text
+
+Check `supports(host, "clipboard")` before calling
+`host.sdk.readTextFromClipboard(callback)`. Telegram requires 6.4+. LO checks
+the authenticated installed-app library and a native user interaction within
+the preceding 10 seconds. Page messages cannot grant that interaction.
+The callback receives a string (including an empty string) or `null` when
+access is refused, unavailable, cancelled or times out. LO accepts up to 1 MiB
+of UTF-8 text and leaves clipboard contents unchanged. Backgrounding, page
+navigation and account changes cancel pending access. The native operating
+system may ask for clipboard access; the SDK cannot bypass that permission.
