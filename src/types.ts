@@ -52,6 +52,24 @@ export interface HostLocationManager {
   getLocation(callback: (location: HostLocationData | null) => void): HostLocationManager;
   openSettings(): HostLocationManager;
 }
+/** Acceleration (m/s²) or angular velocity (rad/s), depending on the manager. */
+export interface HostMotionSensor {
+  readonly isStarted: boolean;
+  readonly x: number | null;
+  readonly y: number | null;
+  readonly z: number | null;
+  start(params: { refresh_rate?: number }, callback?: (started: boolean) => void): HostMotionSensor;
+  stop(callback?: (stopped: boolean) => void): HostMotionSensor;
+}
+export interface HostDeviceOrientation {
+  readonly isStarted: boolean;
+  readonly absolute: boolean;
+  readonly alpha: number | null;
+  readonly beta: number | null;
+  readonly gamma: number | null;
+  start(params: { refresh_rate?: number; need_absolute?: boolean }, callback?: (started: boolean) => void): HostDeviceOrientation;
+  stop(callback?: (stopped: boolean) => void): HostDeviceOrientation;
+}
 export interface HostBiometricManager {
   readonly isInited: boolean;
   readonly isBiometricAvailable: boolean;
@@ -68,6 +86,9 @@ export interface HostBiometricManager {
 }
 export interface HostSDK {
   BiometricManager?: HostBiometricManager;
+  Accelerometer?: HostMotionSensor;
+  Gyroscope?: HostMotionSensor;
+  DeviceOrientation?: HostDeviceOrientation;
   LocationManager?: HostLocationManager;
   SecureStorage?: HostSecureStorage;
   DeviceStorage?: HostDeviceStorage;

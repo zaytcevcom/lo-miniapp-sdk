@@ -220,3 +220,6 @@ callback)` returns the system-authenticated token. `openSettings()` requires a
 recent Mini App interaction. LO scopes permission, token keys and device IDs to
 the account, bot and local installation. Native hosts must enforce biometric
 protection for token reads and writes before advertising this capability.
+
+
+Native `Accelerometer`, `Gyroscope` and `DeviceOrientation` managers expose readonly samples and chainable start/stop callbacks. Check the `sensors` capability before use. Refresh intervals are 20–1000 milliseconds (default 1000); native hardware may deliver a different frequency. Acceleration includes gravity in m/s², gyroscope samples are rad/s, and orientation angles are radians. `need_absolute` requests a north reference; inspect `absolute` because relative fallback is allowed.
