@@ -170,3 +170,17 @@ restoration flag. LO requires `secureStorage`; Telegram requires version 9.0.
 Restoration requires native user consent. Errors, denied consent and cancellation
 are propagated, and operations default to a 60-second timeout. No secrets are
 stored by this SDK itself.
+
+### Switch to an inline query
+
+`host.sdk.switchInlineQuery(query, chooseChatTypes)` prepares an inline query
+in a native chat composer. Check `supports(host, "switchInlineQuery")` first
+(LO capability, Telegram 6.7+). Queries are limited to 256 UTF-16 code units.
+Without chat types, LO returns to the native source chat when available;
+standalone launches offer the chat picker. Explicit types select among
+`users`, `bots`, `groups`, and `channels`; LO currently has no channel
+conversation kind, so channels-only requests show no eligible destinations.
+The host resolves the launch bot identity, refreshes destination permissions
+and remote draft, and preserves occupied drafts and recordings. Selection
+only prepares text; the user still chooses an inline result and sends it.
+Cancellation keeps the Mini App open.
