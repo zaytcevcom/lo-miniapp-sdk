@@ -25,7 +25,15 @@ export interface HostDeviceStorage {
   removeItem(key: string, callback?: StorageCallback<boolean>): HostDeviceStorage;
   clear(callback?: StorageCallback<boolean>): HostDeviceStorage;
 }
+export interface HostSecureStorage {
+  setItem(key: string, value: string, callback?: StorageCallback<boolean>): HostSecureStorage;
+  getItem(key: string, callback: (error: unknown, value?: string | null, canRestore?: boolean) => void): HostSecureStorage;
+  restoreItem(key: string, callback?: StorageCallback<string>): HostSecureStorage;
+  removeItem(key: string, callback?: StorageCallback<boolean>): HostSecureStorage;
+  clear(callback?: StorageCallback<boolean>): HostSecureStorage;
+}
 export interface HostSDK {
+  SecureStorage?: HostSecureStorage;
   DeviceStorage?: HostDeviceStorage;
   CloudStorage?: HostCloudStorage;
   initData: string;

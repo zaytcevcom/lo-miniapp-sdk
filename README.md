@@ -161,3 +161,12 @@ stored empty string remains an empty string. Operations accept the same abort
 signal and timeout options as CloudStorage. Native quota, disk and session
 errors are propagated to the caller. This is local device storage; use
 CloudStorage when data must follow the account across devices.
+
+### Secure storage
+
+`secureStorage(host)` exposes native encrypted set/get/remove/clear and
+`restoreItem`. `getItem` returns `{ value, canRestore }`, preserving the native
+restoration flag. LO requires `secureStorage`; Telegram requires version 9.0.
+Restoration requires native user consent. Errors, denied consent and cancellation
+are propagated, and operations default to a 60-second timeout. No secrets are
+stored by this SDK itself.
