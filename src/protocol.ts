@@ -193,6 +193,7 @@ export const LO_HOST_CAPABILITIES = [
   "qrScanner",
   "cloudStorage",
   "deviceStorage",
+  "secureStorage",
   "expand",
   "backButton",
   "mainButton",
