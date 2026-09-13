@@ -1,5 +1,11 @@
 /** Events the Mini App sends to the client. */
 export const MiniAppOutgoingEvent = {
+  StartAccelerometer: "web_app_start_accelerometer",
+  StopAccelerometer: "web_app_stop_accelerometer",
+  StartDeviceOrientation: "web_app_start_device_orientation",
+  StopDeviceOrientation: "web_app_stop_device_orientation",
+  StartGyroscope: "web_app_start_gyroscope",
+  StopGyroscope: "web_app_stop_gyroscope",
   /** The app finished loading and is ready to be shown. */
   Ready: "web_app_ready",
   InvokeCustomMethod: "web_app_invoke_custom_method",
@@ -74,6 +80,18 @@ export type MiniAppOutgoingEventName =
 
 /** Events the client sends to the Mini App. */
 export const MiniAppIncomingEvent = {
+  AccelerometerStarted: "accelerometer_started",
+  AccelerometerStopped: "accelerometer_stopped",
+  AccelerometerChanged: "accelerometer_changed",
+  AccelerometerFailed: "accelerometer_failed",
+  DeviceOrientationStarted: "device_orientation_started",
+  DeviceOrientationStopped: "device_orientation_stopped",
+  DeviceOrientationChanged: "device_orientation_changed",
+  DeviceOrientationFailed: "device_orientation_failed",
+  GyroscopeStarted: "gyroscope_started",
+  GyroscopeStopped: "gyroscope_stopped",
+  GyroscopeChanged: "gyroscope_changed",
+  GyroscopeFailed: "gyroscope_failed",
   BiometryInfoReceived: "biometry_info_received",
   BiometryAuthRequested: "biometry_auth_requested",
   BiometryTokenUpdated: "biometry_token_updated",
@@ -212,6 +230,7 @@ export const LO_HOST_CAPABILITIES = [
   "orientation",
   "location",
   "biometry",
+  "sensors",
   "qrScanner",
   "cloudStorage",
   "deviceStorage",
@@ -243,3 +262,10 @@ export type CloudStorageResult = { req_id: string; result?: boolean | string[] |
 /** Native validates the optional, trimmed prompt to at most 64 UTF-16 units. */
 export type ScanQrPopupPayload = { text?: string };
 export type QrTextReceivedPayload = { data: string };
+
+
+/** Device tracking refresh interval in milliseconds (20–1000, default 1000). */
+export type SensorStartPayload = { refresh_rate?: number };
+export type DeviceOrientationStartPayload = SensorStartPayload & { need_absolute?: boolean };
+export type SensorChangedPayload = { x: number; y: number; z: number };
+export type DeviceOrientationChangedPayload = { absolute: boolean; alpha: number; beta: number; gamma: number };

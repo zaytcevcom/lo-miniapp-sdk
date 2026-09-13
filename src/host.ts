@@ -87,6 +87,7 @@ export function supports(host: Host | null, capability: Capability): boolean {
     orientation: "8.0",
     location: "8.0",
     biometry: "7.2",
+    sensors: "8.0",
     qrScanner: "6.4",
     cloudStorage: "6.9",
     deviceStorage: "9.0",
