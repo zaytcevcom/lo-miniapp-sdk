@@ -1,6 +1,6 @@
 import { MiniAppError, withHostCallback } from "./async.js";
 import { supports } from "./host.js";
-import type { Host, HostCloudStorage, StorageCallback } from "./types.js";
+import type { Host, HostCloudStorage, HostDeviceStorage, StorageCallback } from "./types.js";
 
 export type StorageOptions = { signal?: AbortSignal; timeoutMs?: number };
 
@@ -26,5 +26,25 @@ export function cloudStorage(host: Host) {
       call<boolean>((storage, done) => storage.removeItems(keys, done), options),
     getKeys: (options: StorageOptions = {}) =>
       call<string[]>((storage, done) => storage.getKeys(done), options),
+  };
+}
+
+/** Persistent storage on the current device, isolated by account and bot. */
+export function deviceStorage(host: Host) {
+  function call<T>(start: (storage: HostDeviceStorage, done: StorageCallback<T>) => void, options: StorageOptions): Promise<T> {
+    if (!supports(host, "deviceStorage") || !host.sdk.DeviceStorage) {
+      return Promise.reject(new MiniAppError("unsupported"));
+    }
+    return withHostCallback<T>(finish => start(host.sdk.DeviceStorage!, finish), { timeoutMs: 30000, ...options });
+  }
+  return {
+    setItem: (key: string, value: string, options: StorageOptions = {}) =>
+      call<boolean>((storage, done) => storage.setItem(key, value, done), options),
+    getItem: (key: string, options: StorageOptions = {}) =>
+      call<string | null>((storage, done) => storage.getItem(key, done), options),
+    removeItem: (key: string, options: StorageOptions = {}) =>
+      call<boolean>((storage, done) => storage.removeItem(key, done), options),
+    clear: (options: StorageOptions = {}) =>
+      call<boolean>((storage, done) => storage.clear(done), options),
   };
 }

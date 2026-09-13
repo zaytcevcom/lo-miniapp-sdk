@@ -19,7 +19,14 @@ export interface HostCloudStorage {
   removeItems(keys: string[], callback?: StorageCallback<boolean>): HostCloudStorage;
   getKeys(callback?: StorageCallback<string[]>): HostCloudStorage;
 }
+export interface HostDeviceStorage {
+  setItem(key: string, value: string, callback?: StorageCallback<boolean>): HostDeviceStorage;
+  getItem(key: string, callback: StorageCallback<string | null>): HostDeviceStorage;
+  removeItem(key: string, callback?: StorageCallback<boolean>): HostDeviceStorage;
+  clear(callback?: StorageCallback<boolean>): HostDeviceStorage;
+}
 export interface HostSDK {
+  DeviceStorage?: HostDeviceStorage;
   CloudStorage?: HostCloudStorage;
   initData: string;
   capabilities?: readonly string[];

@@ -192,6 +192,7 @@ export const LO_HOST_CAPABILITIES = [
   "hideKeyboard",
   "qrScanner",
   "cloudStorage",
+  "deviceStorage",
   "expand",
   "backButton",
   "mainButton",
