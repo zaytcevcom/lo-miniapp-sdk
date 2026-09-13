@@ -228,3 +228,19 @@ Native `Accelerometer`, `Gyroscope` and `DeviceOrientation` managers expose read
 `file_name`. Its callback reports whether the user accepted the request;
 `true` does not mean transfer or export has completed. LO hosts advertise
 `downloadFile` only when their native download and save workflow is available.
+
+### Sharing the user's contact
+
+`requestContact(host, { signal?, timeoutMs? })` asks the native client to confirm
+sharing the registered contact with the launch bot. It resolves `true` only when
+the host confirms delivery, `false` for cancellation or a refused send. The page
+receives no phone number. Check `supports(host, "requestContact")`; LO must
+explicitly advertise this capability and Telegram must support version 6.9+.
+Aborting or timing out stops waiting in the SDK; it cannot retract a message
+already committed by the native host. Do not automatically start another consent
+action on timeout.
+
+The wire events are `web_app_request_phone` and `phone_requested` with status
+`sent` or `cancelled`, corresponding to the WebApp `contactRequested` event.
+Native hosts must obtain explicit consent and preserve action identity across
+network retries. See [Telegram's contact event contract](https://core.telegram.org/api/web-events#web-app-request-phone).

@@ -132,6 +132,7 @@ export interface HostSDK {
   enableClosingConfirmation?(): void;
   disableClosingConfirmation?(): void;
   requestWriteAccess?(callback: (allowed: boolean) => void): void;
+  requestContact?(callback?: (sent: boolean) => void): void;
   HapticFeedback?: {
     notificationOccurred?(type: string): void;
     impactOccurred?(type: string): void;
