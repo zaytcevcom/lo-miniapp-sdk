@@ -52,7 +52,22 @@ export interface HostLocationManager {
   getLocation(callback: (location: HostLocationData | null) => void): HostLocationManager;
   openSettings(): HostLocationManager;
 }
+export interface HostBiometricManager {
+  readonly isInited: boolean;
+  readonly isBiometricAvailable: boolean;
+  readonly biometricType: "finger" | "face" | "unknown";
+  readonly isAccessRequested: boolean;
+  readonly isAccessGranted: boolean;
+  readonly isBiometricTokenSaved: boolean;
+  readonly deviceId: string;
+  init(callback?: () => void): HostBiometricManager;
+  requestAccess(params: { reason?: string }, callback?: (granted: boolean) => void): HostBiometricManager;
+  authenticate(params: { reason?: string }, callback?: (authenticated: boolean, token?: string) => void): HostBiometricManager;
+  updateBiometricToken(token: string, callback?: (updated: boolean) => void): HostBiometricManager;
+  openSettings(): HostBiometricManager;
+}
 export interface HostSDK {
+  BiometricManager?: HostBiometricManager;
   LocationManager?: HostLocationManager;
   SecureStorage?: HostSecureStorage;
   DeviceStorage?: HostDeviceStorage;

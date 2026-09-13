@@ -5,6 +5,11 @@ export const MiniAppOutgoingEvent = {
   InvokeCustomMethod: "web_app_invoke_custom_method",
   HideKeyboard: "web_app_hide_keyboard",
   SwitchInlineQuery: "web_app_switch_inline_query",
+  BiometryGetInfo: "web_app_biometry_get_info",
+  BiometryRequestAccess: "web_app_biometry_request_access",
+  BiometryRequestAuth: "web_app_biometry_request_auth",
+  BiometryUpdateToken: "web_app_biometry_update_token",
+  BiometryOpenSettings: "web_app_biometry_open_settings",
   CheckLocation: "web_app_check_location",
   RequestLocation: "web_app_request_location",
   OpenLocationSettings: "web_app_open_location_settings",
@@ -69,6 +74,9 @@ export type MiniAppOutgoingEventName =
 
 /** Events the client sends to the Mini App. */
 export const MiniAppIncomingEvent = {
+  BiometryInfoReceived: "biometry_info_received",
+  BiometryAuthRequested: "biometry_auth_requested",
+  BiometryTokenUpdated: "biometry_token_updated",
   LocationChecked: "location_checked",
   LocationRequested: "location_requested",
   ClipboardTextReceived: "clipboard_text_received",
@@ -203,6 +211,7 @@ export const LO_HOST_CAPABILITIES = [
   "clipboard",
   "orientation",
   "location",
+  "biometry",
   "qrScanner",
   "cloudStorage",
   "deviceStorage",
