@@ -5,6 +5,7 @@ export const MiniAppOutgoingEvent = {
   InvokeCustomMethod: "web_app_invoke_custom_method",
   HideKeyboard: "web_app_hide_keyboard",
   SwitchInlineQuery: "web_app_switch_inline_query",
+  ReadClipboard: "web_app_read_text_from_clipboard",
   OpenScanQrPopup: "web_app_open_scan_qr_popup",
   CloseScanQrPopup: "web_app_close_scan_qr_popup",
   RequestWriteAccess: "web_app_request_write_access",
@@ -64,6 +65,7 @@ export type MiniAppOutgoingEventName =
 
 /** Events the client sends to the Mini App. */
 export const MiniAppIncomingEvent = {
+  ClipboardTextReceived: "clipboard_text_received",
   CustomMethodInvoked: "custom_method_invoked",
   QrTextReceived: "qr_text_received",
   ScanQrPopupClosed: "scan_qr_popup_closed",
@@ -192,6 +194,7 @@ export const LO_HOST_CAPABILITIES = [
   "ready",
   "hideKeyboard",
   "switchInlineQuery",
+  "clipboard",
   "qrScanner",
   "cloudStorage",
   "deviceStorage",
