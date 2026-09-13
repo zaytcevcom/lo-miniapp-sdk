@@ -5,6 +5,9 @@ export const MiniAppOutgoingEvent = {
   InvokeCustomMethod: "web_app_invoke_custom_method",
   HideKeyboard: "web_app_hide_keyboard",
   SwitchInlineQuery: "web_app_switch_inline_query",
+  CheckLocation: "web_app_check_location",
+  RequestLocation: "web_app_request_location",
+  OpenLocationSettings: "web_app_open_location_settings",
   ToggleOrientationLock: "web_app_toggle_orientation_lock",
   ReadClipboard: "web_app_read_text_from_clipboard",
   OpenScanQrPopup: "web_app_open_scan_qr_popup",
@@ -66,6 +69,8 @@ export type MiniAppOutgoingEventName =
 
 /** Events the client sends to the Mini App. */
 export const MiniAppIncomingEvent = {
+  LocationChecked: "location_checked",
+  LocationRequested: "location_requested",
   ClipboardTextReceived: "clipboard_text_received",
   CustomMethodInvoked: "custom_method_invoked",
   QrTextReceived: "qr_text_received",
@@ -197,6 +202,7 @@ export const LO_HOST_CAPABILITIES = [
   "switchInlineQuery",
   "clipboard",
   "orientation",
+  "location",
   "qrScanner",
   "cloudStorage",
   "deviceStorage",

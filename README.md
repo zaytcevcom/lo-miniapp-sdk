@@ -198,3 +198,14 @@ navigation and account changes cancel pending access. The native operating
 system may ask for clipboard access; the SDK cannot bypass that permission.
 
 Orientation capability exposes `lockOrientation()` and `unlockOrientation()` plus `isOrientationLocked`. LO requires a native host supporting the orientation contract; closing or backgrounding the Mini App restores the underlying application orientation.
+
+### LocationManager
+
+Capability `location` exposes Telegram 8.0-compatible `sdk.LocationManager`.
+Call `init(callback)` before `getLocation(callback)` or `openSettings()`.
+Initialization only checks availability and bot permission; it never asks for a
+position. A location callback receives coordinates and nullable accuracy/motion
+fields, or `null` on denial or unavailability. Access is scoped to the logged-in
+account and bot. `openSettings()` requires a recent interaction with the Mini App.
+LO requests one current position at a time and cancels delivery when the host
+closes, backgrounds, or changes accounts. It does not store location history.
