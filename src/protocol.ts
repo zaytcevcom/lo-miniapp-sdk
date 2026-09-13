@@ -25,6 +25,7 @@ export const MiniAppOutgoingEvent = {
   OpenScanQrPopup: "web_app_open_scan_qr_popup",
   CloseScanQrPopup: "web_app_close_scan_qr_popup",
   RequestWriteAccess: "web_app_request_write_access",
+  SendPreparedMessage: "web_app_send_prepared_message",
   RequestContact: "web_app_request_phone",
   /** Expand the app to full height. */
   Expand: "web_app_expand",
@@ -114,6 +115,8 @@ export const MiniAppIncomingEvent = {
   ContentSafeAreaChanged: "content_safe_area_changed",
   PopupClosed: "popup_closed",
   WriteAccessRequested: "write_access_requested",
+  PreparedMessageSent: "prepared_message_sent",
+  PreparedMessageFailed: "prepared_message_failed",
   PhoneRequested: "phone_requested",
   VisibilityChanged: "visibility_changed",
   FullscreenChanged: "fullscreen_changed",
@@ -228,6 +231,7 @@ export const LO_SDK_PROTOCOL_VERSION = 1 as const;
 export const LO_HOST_CAPABILITIES = [
   "requestWriteAccess",
   "requestContact",
+  "shareMessage",
   "ready",
   "hideKeyboard",
   "switchInlineQuery",

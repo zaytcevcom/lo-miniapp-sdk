@@ -244,3 +244,14 @@ The wire events are `web_app_request_phone` and `phone_requested` with status
 `sent` or `cancelled`, corresponding to the WebApp `contactRequested` event.
 Native hosts must obtain explicit consent and preserve action identity across
 network retries. See [Telegram's contact event contract](https://core.telegram.org/api/web-events#web-app-request-phone).
+
+### Prepared message sharing
+
+`shareMessage(host, preparedMessageId, { signal, timeoutMs })` opens the native
+preview and chat picker. It resolves `true` only after the host confirms delivery;
+`false` means the share was cancelled or failed. LO requires the advertised
+`shareMessage` capability; Telegram requires 8.0 or later. The bot first saves the
+message for this user with `savePreparedInlineMessage`. No message content, user
+identity, or destination is supplied by the page. Timeout/abort stops waiting;
+it does not undo a message already sent. Do not automatically retry the helper.
+See the [Telegram prepared-message flow](https://core.telegram.org/api/bots/inline).
