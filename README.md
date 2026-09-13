@@ -151,3 +151,13 @@ permission failure, but not for a programmatic close. Telegram exposes the
 public `scanQrPopupClosed` event from 7.7. These additive types do not enable a
 scanner on an older LO binary; native implementation and permission handling
 must be distributed separately before advertising the capability.
+
+### Device storage
+
+`deviceStorage(host)` provides Promise-based `setItem`, `getItem`, `removeItem`
+and `clear` operations. LO requires the explicit `deviceStorage` capability;
+Telegram requires version 9.0 or later. Missing keys return `null`, while a
+stored empty string remains an empty string. Operations accept the same abort
+signal and timeout options as CloudStorage. Native quota, disk and session
+errors are propagated to the caller. This is local device storage; use
+CloudStorage when data must follow the account across devices.
