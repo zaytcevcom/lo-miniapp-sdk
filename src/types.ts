@@ -32,7 +32,28 @@ export interface HostSecureStorage {
   removeItem(key: string, callback?: StorageCallback<boolean>): HostSecureStorage;
   clear(callback?: StorageCallback<boolean>): HostSecureStorage;
 }
+export interface HostLocationData {
+  latitude: number;
+  longitude: number;
+  altitude: number | null;
+  course: number | null;
+  speed: number | null;
+  horizontal_accuracy: number | null;
+  vertical_accuracy: number | null;
+  course_accuracy: number | null;
+  speed_accuracy: number | null;
+}
+export interface HostLocationManager {
+  readonly isInited: boolean;
+  readonly isLocationAvailable: boolean;
+  readonly isAccessRequested: boolean;
+  readonly isAccessGranted: boolean;
+  init(callback?: () => void): HostLocationManager;
+  getLocation(callback: (location: HostLocationData | null) => void): HostLocationManager;
+  openSettings(): HostLocationManager;
+}
 export interface HostSDK {
+  LocationManager?: HostLocationManager;
   SecureStorage?: HostSecureStorage;
   DeviceStorage?: HostDeviceStorage;
   CloudStorage?: HostCloudStorage;
