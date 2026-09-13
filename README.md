@@ -223,3 +223,8 @@ protection for token reads and writes before advertising this capability.
 
 
 Native `Accelerometer`, `Gyroscope` and `DeviceOrientation` managers expose readonly samples and chainable start/stop callbacks. Check the `sensors` capability before use. Refresh intervals are 20–1000 milliseconds (default 1000); native hardware may deliver a different frequency. Acceleration includes gravity in m/s², gyroscope samples are rad/s, and orientation angles are radians. `need_absolute` requests a north reference; inspect `absolute` because relative fallback is allowed.
+
+`downloadFile` (Telegram 8.0+) accepts an HTTPS `url` and a suggested
+`file_name`. Its callback reports whether the user accepted the request;
+`true` does not mean transfer or export has completed. LO hosts advertise
+`downloadFile` only when their native download and save workflow is available.

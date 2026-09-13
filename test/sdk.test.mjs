@@ -239,3 +239,10 @@ test("malformed or inaccessible cache does not block login", async () => {
   };
   assert.equal((await authenticate(host, options)).token, "t");
 });
+
+test("download capability follows native host support and Telegram 8.0", () => {
+  assert.equal(supports({ provider: "lo", sdk: { initData: "x", capabilities: [] } }, "downloadFile"), false);
+  assert.equal(supports({ provider: "lo", sdk: { initData: "x", capabilities: ["downloadFile"] } }, "downloadFile"), true);
+  assert.equal(supports({ provider: "telegram", sdk: { initData: "x", version: "7.10" } }, "downloadFile"), false);
+  assert.equal(supports({ provider: "telegram", sdk: { initData: "x", version: "8.0" } }, "downloadFile"), true);
+});

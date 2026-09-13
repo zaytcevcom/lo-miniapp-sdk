@@ -85,6 +85,8 @@ export interface HostBiometricManager {
   openSettings(): HostBiometricManager;
 }
 export interface HostSDK {
+  /** Callback reports user acceptance, not download or export completion. */
+  downloadFile?(params: import("./protocol.js").DownloadFileParams, callback?: (accepted: boolean) => void): HostSDK;
   BiometricManager?: HostBiometricManager;
   Accelerometer?: HostMotionSensor;
   Gyroscope?: HostMotionSensor;
