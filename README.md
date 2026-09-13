@@ -209,3 +209,14 @@ fields, or `null` on denial or unavailability. Access is scoped to the logged-in
 account and bot. `openSettings()` requires a recent interaction with the Mini App.
 LO requests one current position at a time and cancels delivery when the host
 closes, backgrounds, or changes accounts. It does not store location history.
+
+### BiometricManager
+
+Capability `biometry` exposes Telegram 7.2-compatible `sdk.BiometricManager`.
+Initialize with `init()`, then request bot access with `requestAccess({reason})`.
+Consent does not authenticate or read a token. `updateBiometricToken(token)` saves
+a token of up to 1024 characters; an empty token removes it. `authenticate({reason},
+callback)` returns the system-authenticated token. `openSettings()` requires a
+recent Mini App interaction. LO scopes permission, token keys and device IDs to
+the account, bot and local installation. Native hosts must enforce biometric
+protection for token reads and writes before advertising this capability.
