@@ -49,6 +49,9 @@ export interface HostSDK {
   contentSafeAreaInset?: { top: number; bottom: number };
   ready?(): void;
   hideKeyboard?(): void;
+  isOrientationLocked?: boolean;
+  lockOrientation?(): void;
+  unlockOrientation?(): void;
   /** null denotes denied or unavailable access; an empty string is valid clipboard text. */
   readTextFromClipboard?(callback?: (text: string | null) => void): HostSDK;
   /** Empty chat types return to the chat from which the Mini App was opened. */

@@ -196,3 +196,5 @@ access is refused, unavailable, cancelled or times out. LO accepts up to 1 MiB
 of UTF-8 text and leaves clipboard contents unchanged. Backgrounding, page
 navigation and account changes cancel pending access. The native operating
 system may ask for clipboard access; the SDK cannot bypass that permission.
+
+Orientation capability exposes `lockOrientation()` and `unlockOrientation()` plus `isOrientationLocked`. LO requires a native host supporting the orientation contract; closing or backgrounding the Mini App restores the underlying application orientation.

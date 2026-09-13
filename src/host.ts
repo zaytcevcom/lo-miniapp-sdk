@@ -84,6 +84,7 @@ export function supports(host: Host | null, capability: Capability): boolean {
     hideKeyboard: "9.1",
     switchInlineQuery: "6.7",
     clipboard: "6.4",
+    orientation: "8.0",
     qrScanner: "6.4",
     cloudStorage: "6.9",
     deviceStorage: "9.0",
