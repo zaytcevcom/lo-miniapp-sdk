@@ -255,3 +255,14 @@ message for this user with `savePreparedInlineMessage`. No message content, user
 identity, or destination is supplied by the page. Timeout/abort stops waiting;
 it does not undo a message already sent. Do not automatically retry the helper.
 See the [Telegram prepared-message flow](https://core.telegram.org/api/bots/inline).
+
+### Sharing media to a story
+
+`shareToStory(host, mediaUrl, { text, widget_link: { url, name } })` asks the host
+to open its native story editor. `mediaUrl` must be HTTPS; optional link destinations
+may use HTTP or HTTPS. The user can edit the story, remove the link, choose an
+audience or cancel. This function returns no publication result: opening an editor
+does not mean the story was published. LO requires an advertised `shareToStory`
+capability; Telegram requires 7.8 or later. Caption text is limited to 2048 UTF-16
+code units and link labels to 48; Telegram may impose additional account limits.
+See [Telegram StoryShareParams](https://core.telegram.org/bots/webapps#storyshareparams).

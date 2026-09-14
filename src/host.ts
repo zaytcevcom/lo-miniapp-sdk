@@ -82,6 +82,7 @@ export function supports(host: Host | null, capability: Capability): boolean {
     requestWriteAccess: "6.9",
     requestContact: "6.9",
     shareMessage: "8.0",
+    shareToStory: "7.8",
     ready: "6.0",
     hideKeyboard: "9.1",
     switchInlineQuery: "6.7",

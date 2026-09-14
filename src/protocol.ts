@@ -25,6 +25,7 @@ export const MiniAppOutgoingEvent = {
   OpenScanQrPopup: "web_app_open_scan_qr_popup",
   CloseScanQrPopup: "web_app_close_scan_qr_popup",
   RequestWriteAccess: "web_app_request_write_access",
+  ShareToStory: "web_app_share_to_story",
   SendPreparedMessage: "web_app_send_prepared_message",
   RequestContact: "web_app_request_phone",
   /** Expand the app to full height. */
@@ -232,6 +233,7 @@ export const LO_HOST_CAPABILITIES = [
   "requestWriteAccess",
   "requestContact",
   "shareMessage",
+  "shareToStory",
   "ready",
   "hideKeyboard",
   "switchInlineQuery",
