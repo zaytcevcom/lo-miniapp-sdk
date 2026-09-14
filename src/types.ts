@@ -1,3 +1,9 @@
+/** Opens the editor; the user chooses the audience and whether to publish. */
+export interface StoryShareParams {
+  text?: string;
+  widget_link?: { url: string; name?: string };
+}
+
 export type Provider = "telegram" | "lo";
 export type HostButton = {
   show?(): void;
@@ -132,6 +138,7 @@ export interface HostSDK {
   enableClosingConfirmation?(): void;
   disableClosingConfirmation?(): void;
   requestWriteAccess?(callback: (allowed: boolean) => void): void;
+  shareToStory?(mediaUrl: string, params?: StoryShareParams): HostSDK;
   shareMessage?(id: string, callback?: (sent: boolean) => void): HostSDK;
   requestContact?(callback?: (sent: boolean) => void): void;
   HapticFeedback?: {
