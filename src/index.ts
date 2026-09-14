@@ -5,3 +5,4 @@ export * from "./session.js";
 export * from "./async.js";
 export * from "./permissions.js";
 export * from "./storage.js";
+export * from "./sharing.js";
